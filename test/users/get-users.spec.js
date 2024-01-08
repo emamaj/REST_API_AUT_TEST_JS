@@ -16,4 +16,32 @@ describe("GET/users", function() {
         expect(response.statusCode).to.be.equal(expectedStatusCode, `For GET users we expected status code: ${expectedStatusCode}`)
         expect(response.body.length).to.be.equal(expectedNumberOfUsers)
     })
+    it("should return user with given ID", async function(){
+        //arrange:
+        const expectedStatusCode = 200
+        const expectedUserID = 1
+
+        //act:
+        const response = await api.get(`/users/${expectedUserID}`)
+
+        //assert:
+        expect(response.statusCode).to.be.equal(expectedStatusCode, `For GET /userID we expect status code: ${expectedStatusCode}`)
+        expect(response.body.id).to.be.equal
+        (expectedUserID, `expect id number ${expectedUserID} we received: ${JSON.stringify(response.body)}`)
+    })
+
+    it("should return list od users with given ID using parameters in URL", async function(){
+        //arrange:
+        const expectedStatusCode = 2
+        const expectedUserID = 1
+
+        //act:
+        const response = await api.get(`/users?id=${expectedUserID}`)
+
+        //assert:
+        expect(response.statusCode).to.be.equal(expectedStatusCode, `expect status code ${expectedStatusCode}`)
+        expect(response.body.length).to.be.equal(1, `For parameter ?id=${expectedUserID}, we received: ${JSON.stringify(response.body)}`)
+        expect(response.body[0]).to.be.equal(expectedUserID, `expect user ?id=: ${expectedUserID} we receive: ${JSON.stringify(response.body)}`)
+
+    })
 })
