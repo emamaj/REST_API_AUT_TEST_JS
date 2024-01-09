@@ -7,7 +7,7 @@ describe("GET/users", function() {
     it("should return status code 200 and more than four users", async function() {
         //arrange:
         const expectedStatusCode = 200
-        const expectedNumberOfUsers = 9
+        const expectedNumberOfUsers = 12
 
         //act:
         const response = await api.get("/users")
@@ -30,9 +30,9 @@ describe("GET/users", function() {
         (expectedUserID, `expect id number ${expectedUserID} we received: ${JSON.stringify(response.body)}`)
     })
 
-    it("should return list od users with given ID using parameters in URL", async function(){
+    it("should return list of users with given ID using parameters in URL", async function(){
         //arrange:
-        const expectedStatusCode = 2
+        const expectedStatusCode = 200
         const expectedUserID = 1
 
         //act:
@@ -41,7 +41,7 @@ describe("GET/users", function() {
         //assert:
         expect(response.statusCode).to.be.equal(expectedStatusCode, `expect status code ${expectedStatusCode}`)
         expect(response.body.length).to.be.equal(1, `For parameter ?id=${expectedUserID}, we received: ${JSON.stringify(response.body)}`)
-        expect(response.body[0]).to.be.equal(expectedUserID, `expect user ?id=: ${expectedUserID} we receive: ${JSON.stringify(response.body)}`)
+        expect(response.body[0].id).to.be.equal(expectedUserID, `expect user ?id=: ${expectedUserID} we receive: ${JSON.stringify(response.body)}`)
 
     })
 })
