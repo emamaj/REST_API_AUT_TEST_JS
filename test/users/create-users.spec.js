@@ -58,5 +58,30 @@ describe("POST/users", function(){
             "Number of users before test does not match number of users after test")
     })
 
-    it("should not create user with empty firstName")
+    it("should not create user with empty email", async function() {
+        // arange:
+        const firstName = ""
+        const lastName = faker.person.lastName()
+        const email = faker.internet.email({ firstName, lastName, provider: "test.test.pl" })
+        const password = faker.internet.password()
+        const payload = {
+            email,
+            firstName,
+            lastName,
+            password,
+            'avatar': ".\\data\\users\\face_1591133479.7144732.jpg"
+        }
+
+        const getAllNumberOfUsers = await api.get("/users")
+
+        // act:
+        const response = await api.post("/users").send(payload)
+
+        // assert:
+        expect(response.statusCode).to.be.equal(422, `Assert failed on ${JSON.stringify(response.body)}`)
+        const getUsersAfter = await api.get("/users")
+        expect(getUsersAfter.body.lenght).to.be.equal(getAllNumberOfUsers.body.lenght, 
+            "Number of users before test does not match number of users after test")
+    })
+
 })
