@@ -36,7 +36,7 @@ describe("POST/articles", function(){
             it(`should not create article with empty: ${field}`, async function() {
                 // arrange:
                 const userId = 1
-                const title = ""
+                const title = faker.lorem.paragraph()
                 const body = faker.lorem.sentence()
                 const date = faker.date.recent()
                 const payload = {
