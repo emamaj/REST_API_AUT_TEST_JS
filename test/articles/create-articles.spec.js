@@ -30,52 +30,34 @@ describe("POST/articles", function(){
     
     })
 
-    it("should not create article with empty title", async function() {
-        // arrange:
-        const userId = 1
-        const title = ""
-        const body = faker.lorem.sentence()
-        const date = faker.date.recent()
-        const payload = {
-            userId,
-            title,
-            body,
-            date,
-        }
-
-        const getArticleBefore = await api.get("/articles")
-
-        // act:
-        const response = await api.post("/articles").send(payload)
-
-        // assert:
-        expect(response.statusCode).to.be.equal(422, `Assert failed on: ${JSON.stringify.body} `)
-        const getArticleAfter = await api.get("/articles")
-        expect(getArticleAfter.body.lenght).to.be.equal(getArticleBefore.body.lenght, 
-            "Number of articles after test does not match number of articles after test")
-    })
-
-    it("should not create article with empty body", async function() {
-        // arrange:
-        const userId = 3
-        const title = faker.lorem.paragraphs()
-        const body = ""
-        const date = faker.date.recent()
-        const payload = {
-            userId,
-            title,
-            body,
-            date
-        }
-
-        const getArticleBefore = await api.get("/articles")
-
-        // act:
-        const response = await api.post("/articles").send(payload)
-
-        // assert:
-        expect(response.statusCode).to.be.equal(422, `Assert failed on: ${JSON.stringify.body}`)
-        const getArticleAfter = await api.get("/articles")
-        expect(getArticleAfter.body.lenght).to.be.equal(getArticleBefore.body.lenght)
+    describe("invalid empty fields", function() {
+        const emptyFields = ["title", "body"]
+        emptyFields.forEach(field => {
+            it(`should not create article with empty: ${field}`, async function() {
+                // arrange:
+                const userId = 1
+                const title = ""
+                const body = faker.lorem.sentence()
+                const date = faker.date.recent()
+                const payload = {
+                    userId,
+                    title,
+                    body,
+                    date,
+                }
+        
+                const getArticleBefore = await api.get("/articles")
+                payload.field = ""
+        
+                // act:
+                const response = await api.post("/articles").send(payload)
+        
+                // assert:
+                expect(response.statusCode).to.be.equal(422, `Assert failed on: ${JSON.stringify.body} `)
+                const getArticleAfter = await api.get("/articles")
+                expect(getArticleAfter.body.lenght).to.be.equal(getArticleBefore.body.lenght, 
+                    "Number of articles after test does not match number of articles after test")
+            })
+        })
     })
 })
