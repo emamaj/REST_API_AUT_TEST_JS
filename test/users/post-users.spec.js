@@ -51,7 +51,7 @@ describe("POST/users", function(){
         
                 const getAllNumberOfUsers = await api.get("/users")
 
-                payload[field] = "0"
+                payload[field] = ""
         
                 // act:
                 const response = await api.post("/users"). send(payload)

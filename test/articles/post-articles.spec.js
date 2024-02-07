@@ -47,7 +47,7 @@ describe("POST/articles", function(){
                 }
         
                 const getArticleBefore = await api.get("/articles")
-                payload.field = ""
+                payload[field] = ""
         
                 // act:
                 const response = await api.post("/articles").send(payload)
