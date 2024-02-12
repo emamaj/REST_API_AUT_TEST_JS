@@ -53,7 +53,7 @@ describe("POST/articles", function(){
                 const response = await api.post("/articles").send(payload)
         
                 // assert:
-                expect(response.statusCode).to.be.equal(422, `Assert failed on: ${JSON.stringify.body} `)
+                expect(response.statusCode).to.be.equal(422, `Assert failed on: ${JSON.stringify(response.body)} `)
                 const getArticleAfter = await api.get("/articles")
                 expect(getArticleAfter.body.lenght).to.be.equal(getArticleBefore.body.lenght, 
                     "Number of articles after test does not match number of articles after test")
