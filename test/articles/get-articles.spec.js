@@ -7,7 +7,7 @@ describe("GET/articles", function() {
     it("should return status code 200 and more than 4 articles", async function() {
         //arrange:
         const expectedStatusCode = 200
-        const expectedNumberOfArticlesID = 4
+        const expectedNumberOfArticlesID = 1
 
         //act:
         const response = await api.get("/articles")

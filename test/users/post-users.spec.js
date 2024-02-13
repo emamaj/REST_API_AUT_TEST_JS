@@ -5,6 +5,9 @@ import { faker } from '@faker-js/faker'
 const api = request('https://rest-api-demo-yxag.onrender.com/api')
 
 describe("POST/users", function(){
+//     beforeEach(function() {
+//         console.log("Executed beforeEach in POST / users")
+//     }) 
     it("should create valid and unique user", async function() {
         //arrange:
         const firstname = faker.person.firstName()

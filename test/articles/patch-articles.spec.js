@@ -8,7 +8,7 @@ describe("PATCH / articles", function() {
     it("should update valid article with valid title", async function() {
         //arrange:
         const title = faker.lorem.paragraphs()
-        const id = 8
+        const id = 1
         const payload = {
             title,
             id
