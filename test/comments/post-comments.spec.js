@@ -15,7 +15,7 @@ describe("POST / comments", function() {
             "date": "2024-04-25"
           }
     const headers = {
-        "authorization": "Basic Test1234" 
+        "authorization": "Basic test5" 
     }
 
     const responseBeforeCreation = await api.get("/comments")
@@ -31,4 +31,30 @@ describe("POST / comments", function() {
         "Number of comments after attempt of creation does not match expected number of comments")
 
     })
+
+    it("should create comment after invalid authorization", async function() {
+        // Arrange
+    
+        const payload = {
+                "article_id": 1,
+                "user_id": 1,
+                "body": faker.lorem.paragraphs( { min: 4, max: 10 }),
+                "date": new Date().toISOString().split('T')[0]
+              }
+        const headers = {
+            "authorization": "Basic TW9zZXMuQXJtc3Ryb25nQEZlZXN0LmNhOjBMZWxpYTM5" 
+        }
+    
+        // Act
+    
+        const response = await api.post("/comments").set(headers).send(payload)
+    
+        // Assert
+        expect(response.statusCode).to.be.equal(201, `Assert failed on ${JSON.stringify(response.body)}`)
+        const responseAfterCreation = await api.get(`/comments/${response.body.id}`)
+        payload.id = response.body.id
+        expect(responseAfterCreation.body).to.be.deep.equal(payload, 
+            "Comment content does not match expected content")
+    
+        })
 })
