@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker'
-import { expect } from 'chai'
+import { expect, use } from 'chai'
 import request from 'supertest'
 
 const api = request('https://rest-api-demo-yxag.onrender.com/api')
@@ -32,18 +32,29 @@ describe("POST / comments", function() {
 
     })
 
-    it("should create comment after invalid authorization", async function() {
+    it("should create comment after valid authorization", async function() {
         // Arrange
-    
+        const userId = 1
         const payload = {
                 "article_id": 1,
-                "user_id": 1,
+                "user_id": userId,
                 "body": faker.lorem.paragraphs( { min: 4, max: 10 }),
                 "date": new Date().toISOString().split('T')[0]
-              }
-        const headers = {
-            "authorization": "Basic TW9zZXMuQXJtc3Ryb25nQEZlZXN0LmNhOjBMZWxpYTM5" 
         }
+
+        const responseWithUser = await api.get(`/users/${userId}`)
+        const userEmail = responseWithUser.body.email
+        const userPass = responseWithUser.body.password
+        const userEmailAndPass = `${userEmail}:${userPass}`
+
+        const userEmailAndPassBasic64 = Buffer.from(userEmailAndPass, 'utf-8').toString('base64')
+
+        const headers = {
+            "authorization": `Basic ${userEmailAndPassBasic64}` 
+        }
+
+        console.log(userEmailAndPassBasic64)
+        console.log(headers)
     
         // Act
     
