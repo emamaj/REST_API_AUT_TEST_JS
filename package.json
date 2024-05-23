@@ -10,7 +10,8 @@
     "testMulti": "mocha './test/sample/new-sample-tests.spec.js'",
     "test-users": "mocha './test/users/**/*.spec.js' --require test/hooks.js",
     "test-articles": "mocha './test/articles/**/*.spec.js' --require test/hooks.js",
-    "test-comments": "mocha './test/comments/**/*.spec.js'"
+    "test-comments": "mocha './test/comments/**/*.spec.js'",
+    "testPlugins": "mocha './test/plugins/**/*.spec.js'"
   },
   "author": "emamaj",
   "license": "ISC",
