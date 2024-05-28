@@ -1,0 +1,823 @@
+{
+  "stats": {
+    "suites": 15,
+    "tests": 23,
+    "passes": 23,
+    "pending": 0,
+    "failures": 0,
+    "start": "2024-05-28T07:22:30.806Z",
+    "end": "2024-05-28T07:22:43.700Z",
+    "duration": 12894,
+    "testsRegistered": 23,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "65ad3dc7-1466-49f0-8da4-b14c8b4caded",
+      "title": "",
+      "fullFile": "",
+      "file": "",
+      "beforeHooks": [
+        {
+          "title": "\"before each\" hook: beforeEach in \"{root}\"",
+          "fullTitle": "\"before each\" hook: beforeEach in \"{root}\"",
+          "timedOut": false,
+          "duration": 158,
+          "state": null,
+          "speed": null,
+          "pass": false,
+          "fail": false,
+          "pending": false,
+          "context": null,
+          "code": "const response = await api.get('/restoreDB')\nexpect(response.statusCode).to.be.equal(201, `Assert failed on: ${JSON.stringify(response.body)}`)\nconsole.log(`This will be expected before each test: ${JSON.stringify(response.body)}`)",
+          "err": {},
+          "uuid": "c3c894b7-cf65-4e33-bbc5-2897c6b0a1c2",
+          "parentUUID": "65ad3dc7-1466-49f0-8da4-b14c8b4caded",
+          "isHook": true,
+          "skipped": false
+        }
+      ],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "0695f4d8-9dfb-43ee-8642-12ca99caa128",
+          "title": "DELETE / articles",
+          "fullFile": "C:\\Users\\Zetor\\Documents\\Projects\\REST_API_DEMO_TEST\\test\\articles\\delete-articles.spec.js",
+          "file": "\\test\\articles\\delete-articles.spec.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should delete valid and existing articles",
+              "fullTitle": "DELETE / articles should delete valid and existing articles",
+              "timedOut": false,
+              "duration": 294,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//arrange:\n// const title = faker.lorem.paragraph({ min: 1, max: 3})\n// const body = faker.lorem.sentence()\n// const payload = {\n//         \"user_id\": 2,\n//         title,\n//         body,\n//         \"date\": \"2024-01-09\",\n//         \"image\": \".\\\\data\\\\images\\\\256\\\\andrew-svk-nQvFebPtqbw-unsplash.jpg\"\n// }\n// const responseAfterCreateArticle = await api.post(\"/articles\").send(payload)\n// expect(responseAfterCreateArticle.statusCode).to.be.equal(201, \n//     `Assert failed on: ${JSON.stringify(responseAfterCreateArticle.body)}`)\n\nconst articleId = 1\n//act:\nconst deleteCreatedArticle = await api.delete(`/articles/${articleId}`)\n//assert:\nexpect(deleteCreatedArticle.statusCode).to.be.equal(200, `Assert failed on: ${JSON.stringify(deleteCreatedArticle.body)}`)\nconst responseAfterDelete = await api.delete(`/articles/${articleId}`)\nexpect(responseAfterDelete.statusCode).to.be.equal(404, `Assert failed on: ${JSON.stringify(responseAfterDelete.statusCode)}`)",
+              "err": {},
+              "uuid": "b593f052-1ae7-4d86-af2c-4fcc5fe0ee88",
+              "parentUUID": "0695f4d8-9dfb-43ee-8642-12ca99caa128",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "b593f052-1ae7-4d86-af2c-4fcc5fe0ee88"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 294,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "e2162f51-f4f1-40ff-8876-eec59fd94732",
+          "title": "GET/articles",
+          "fullFile": "C:\\Users\\Zetor\\Documents\\Projects\\REST_API_DEMO_TEST\\test\\articles\\get-articles.spec.js",
+          "file": "\\test\\articles\\get-articles.spec.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should return status code 200 and more than 4 articles",
+              "fullTitle": "GET/articles should return status code 200 and more than 4 articles",
+              "timedOut": false,
+              "duration": 180,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//arrange:\nconst expectedStatusCode = 200\nconst expectedNumberOfArticlesID = 1\n//act:\nconst response = await api.get(\"/articles\")\n//assert:\nexpect(response.statusCode).to.be.equal(expectedStatusCode, `return status code: ${expectedStatusCode}`) \nexpect(response.body.length).to.be.greaterThanOrEqual(expectedNumberOfArticlesID, `return expected number od articles: ${expectedNumberOfArticlesID} `)",
+              "err": {},
+              "uuid": "50a659be-a2c9-41a9-9fa6-759c1879ad38",
+              "parentUUID": "e2162f51-f4f1-40ff-8876-eec59fd94732",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should return article ID with given number of article",
+              "fullTitle": "GET/articles should return article ID with given number of article",
+              "timedOut": false,
+              "duration": 267,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//arrange:\nconst expectedStatusCode = 200\nconst expectedNumberOfArticlesID = 1\nconst epxectedTitleOfArticle = \"The beauty of the sunset was obscured by the industrial cranes\"\n//act:\nconst response = await api.get(`/articles/${expectedNumberOfArticlesID}`)\n//assert:\nexpect(response.statusCode).to.be.equal(expectedStatusCode, `return status code: ${expectedStatusCode}`) \nexpect(response.body.id).to.be.greaterThanOrEqual(expectedNumberOfArticlesID, `return expected number od articles: ${expectedNumberOfArticlesID} `)\nexpect(response.body.title).to.be.equal(epxectedTitleOfArticle, `return expected title of article: ${epxectedTitleOfArticle}`)",
+              "err": {},
+              "uuid": "b7b5f84d-fb4d-43dc-90ed-f45e521f8fcf",
+              "parentUUID": "e2162f51-f4f1-40ff-8876-eec59fd94732",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should return article ID with given parameter from URL",
+              "fullTitle": "GET/articles should return article ID with given parameter from URL",
+              "timedOut": false,
+              "duration": 178,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//arrange:\nconst expectedStatusCode = 200\nconst expectedNumberOfArticlesID = 1\nconst epxectedTitleOfArticle = \"The beauty of the sunset was obscured by the industrial cranes\"\n//act:\nconst response = await api.get(`/articles?id=${expectedNumberOfArticlesID}`)\n//assert:\nexpect(response.statusCode).to.be.equal(expectedStatusCode, `return status code for GET/articles?id: ${expectedStatusCode}`)\nexpect(response.body[0].id).to.be.equal(expectedNumberOfArticlesID, `return article ID: ${expectedNumberOfArticlesID}, we received ${JSON.stringify(response.body)}`)\nexpect(response.body[0].title).to.be.equal(epxectedTitleOfArticle, `return expected title ${epxectedTitleOfArticle}`)",
+              "err": {},
+              "uuid": "14d3a82e-5700-4194-92fe-58b8a8bb5ef6",
+              "parentUUID": "e2162f51-f4f1-40ff-8876-eec59fd94732",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "50a659be-a2c9-41a9-9fa6-759c1879ad38",
+            "b7b5f84d-fb4d-43dc-90ed-f45e521f8fcf",
+            "14d3a82e-5700-4194-92fe-58b8a8bb5ef6"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 625,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "42a8a13a-11dd-40cd-b0fb-96b6103ded21",
+          "title": "PATCH / articles",
+          "fullFile": "C:\\Users\\Zetor\\Documents\\Projects\\REST_API_DEMO_TEST\\test\\articles\\patch-articles.spec.js",
+          "file": "\\test\\articles\\patch-articles.spec.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should update valid article with valid title",
+              "fullTitle": "PATCH / articles should update valid article with valid title",
+              "timedOut": false,
+              "duration": 582,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//arrange:\nconst title = faker.lorem.paragraphs()\nconst id = 1\nconst payload = {\n    title,\n    id\n}\nconst responseWithBaseArticle = await api.get(`/articles/${id}`)\nconst expectedData = responseWithBaseArticle.body\nexpectedData.title = title\n//act:\nconst response = await api.patch(`/articles/${id}`).send(payload)\n\n//assert:\nexpect(response.statusCode).to.be.equal(200, `Assert faild on: ${JSON.stringify(response.body)}`)\nconst articleTitleAfter = await api.get(`/articles/${id}`)\nexpect(articleTitleAfter.body).to.be.deep.equal(expectedData)",
+              "err": {},
+              "uuid": "6f28b56f-2513-4cb0-9627-fdbff0b96561",
+              "parentUUID": "42a8a13a-11dd-40cd-b0fb-96b6103ded21",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "6f28b56f-2513-4cb0-9627-fdbff0b96561"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 582,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "0d9429de-f66c-4fca-8686-14fa36bff1f5",
+          "title": "POST/articles",
+          "fullFile": "C:\\Users\\Zetor\\Documents\\Projects\\REST_API_DEMO_TEST\\test\\articles\\post-articles.spec.js",
+          "file": "\\test\\articles\\post-articles.spec.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should create a new article",
+              "fullTitle": "POST/articles should create a new article",
+              "timedOut": false,
+              "duration": 392,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//arrange:\nconst expectedstatusCode = 201\nconst title = faker.lorem.paragraph({ min: 1, max: 3})\nconst body = faker.lorem.sentence()\nconst payload = {\n        \"user_id\": 2,\n        title,\n        body,\n        \"date\": \"2024-01-09\",\n        \"image\": \".\\\\data\\\\images\\\\256\\\\andrew-svk-nQvFebPtqbw-unsplash.jpg\"\n}\n//act:\nconst response = await api.post(\"/articles\").send(payload)\n//assert:\nexpect(response.statusCode).to.be.equal(expectedstatusCode, `expected status code is: ${expectedstatusCode} with actual ${response.body}`)\nconst newArticle = await api.get(`/articles/${response.body.id}`)\npayload.id = response.body.id\nexpect(newArticle.body).to.be.deep.equal(payload, `expected article ID: ${response.body.id}`)",
+              "err": {},
+              "uuid": "5db054e6-e435-4290-8d54-13bf4ce3c86f",
+              "parentUUID": "0d9429de-f66c-4fca-8686-14fa36bff1f5",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [
+            {
+              "uuid": "4b92e614-6a71-42bd-925b-b837eef26074",
+              "title": "invalid empty fields",
+              "fullFile": "C:\\Users\\Zetor\\Documents\\Projects\\REST_API_DEMO_TEST\\test\\articles\\post-articles.spec.js",
+              "file": "\\test\\articles\\post-articles.spec.js",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "should not create article with empty: title",
+                  "fullTitle": "POST/articles invalid empty fields should not create article with empty: title",
+                  "timedOut": false,
+                  "duration": 479,
+                  "state": "passed",
+                  "speed": "slow",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "// arrange:\nconst userId = 1\nconst title = faker.lorem.paragraph()\nconst body = faker.lorem.sentence()\nconst date = faker.date.recent()\nconst payload = {\n    userId,\n    title,\n    body,\n    date,\n}\n        \nconst getArticleBefore = await api.get(\"/articles\")\npayload[field] = \"\"\n        \n// act:\nconst response = await api.post(\"/articles\").send(payload)\n        \n// assert:\nexpect(response.statusCode).to.be.equal(422, `Assert failed on: ${JSON.stringify(response.body)} `)\nconst getArticleAfter = await api.get(\"/articles\")\nexpect(getArticleAfter.body.lenght).to.be.equal(getArticleBefore.body.lenght, \n    \"Number of articles after test does not match number of articles after test\")",
+                  "err": {},
+                  "uuid": "9dc0af76-6861-4c73-a445-186b86afe558",
+                  "parentUUID": "4b92e614-6a71-42bd-925b-b837eef26074",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "should not create article with empty: body",
+                  "fullTitle": "POST/articles invalid empty fields should not create article with empty: body",
+                  "timedOut": false,
+                  "duration": 469,
+                  "state": "passed",
+                  "speed": "slow",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "// arrange:\nconst userId = 1\nconst title = faker.lorem.paragraph()\nconst body = faker.lorem.sentence()\nconst date = faker.date.recent()\nconst payload = {\n    userId,\n    title,\n    body,\n    date,\n}\n        \nconst getArticleBefore = await api.get(\"/articles\")\npayload[field] = \"\"\n        \n// act:\nconst response = await api.post(\"/articles\").send(payload)\n        \n// assert:\nexpect(response.statusCode).to.be.equal(422, `Assert failed on: ${JSON.stringify(response.body)} `)\nconst getArticleAfter = await api.get(\"/articles\")\nexpect(getArticleAfter.body.lenght).to.be.equal(getArticleBefore.body.lenght, \n    \"Number of articles after test does not match number of articles after test\")",
+                  "err": {},
+                  "uuid": "fc5d47a2-1ae1-46f7-8b4c-49c71337fdfd",
+                  "parentUUID": "4b92e614-6a71-42bd-925b-b837eef26074",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [
+                "9dc0af76-6861-4c73-a445-186b86afe558",
+                "fc5d47a2-1ae1-46f7-8b4c-49c71337fdfd"
+              ],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 948,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            }
+          ],
+          "passes": [
+            "5db054e6-e435-4290-8d54-13bf4ce3c86f"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 392,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "d562f488-4e8b-47e4-9249-5d9024b090b4",
+          "title": "PUT/articles",
+          "fullFile": "C:\\Users\\Zetor\\Documents\\Projects\\REST_API_DEMO_TEST\\test\\articles\\put-articles.spec.js",
+          "file": "\\test\\articles\\put-articles.spec.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should update valid article with valid data",
+              "fullTitle": "PUT/articles should update valid article with valid data",
+              "timedOut": false,
+              "duration": 365,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// arrange:\nconst title = \"The beauty of the sunset was obscured by the industrial cranes\"\nconst body = faker.lorem.sentences(2)\nconst id = 1\nconst payload = {\n    body,\n    \"date\": \"2022-03-26\",\n    id,\n    \"image\": \".\\\\data\\\\images\\\\256\\\\andrew-svk-nQvFebPtqbw-unsplash.jpg\",\n    title,\n    \"user_id\": 1\n}\n//act:\nconst response = await api.put(`/articles/${id}`).send(payload)\n//assert:\nexpect(response.statusCode).to.be.equal(200, `Assert failed on: ${JSON.stringify(response.body)}`)\nconst getArticleId = await api.get(`/articles/${id}`) \nexpect(getArticleId.body).to.be.eql(payload, `Assertion failed during comparing expected ${JSON.stringify(payload)} \nwith actual ${JSON.stringify(getArticleId.body)}`)",
+              "err": {},
+              "uuid": "d97c5f6a-04bd-42b3-9023-da3fb85b3da5",
+              "parentUUID": "d562f488-4e8b-47e4-9249-5d9024b090b4",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "d97c5f6a-04bd-42b3-9023-da3fb85b3da5"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 365,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "9f085b3f-5a43-4513-af86-fad814906a19",
+          "title": "POST / comments",
+          "fullFile": "C:\\Users\\Zetor\\Documents\\Projects\\REST_API_DEMO_TEST\\test\\comments\\post-comments.spec.js",
+          "file": "\\test\\comments\\post-comments.spec.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should not create comment because invalid authorization",
+              "fullTitle": "POST / comments should not create comment because invalid authorization",
+              "timedOut": false,
+              "duration": 429,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// Arrange\nconst payload = {\n        \"article_id\": 1,\n        \"user_id\": 1,\n        \"body\": \"string\",\n        \"date\": \"2024-04-25\"\n      }\nconst headers = {\n    \"authorization\": \"Basic test5\" \n}\nconst responseBeforeCreation = await api.get(\"/comments\")\n// Act\nconst response = await api.post(\"/comments\").set(headers).send(payload)\n// Assert\nexpect(response.statusCode).to.be.equal(403, `Assert failed on ${JSON.stringify(response.body)}`)\nconst responseAfterCreation = await api.get(\"/comments\")\nexpect(responseAfterCreation.body.length).to.be.equal(responseBeforeCreation.body.length, \n    \"Number of comments after attempt of creation does not match expected number of comments\")",
+              "err": {},
+              "uuid": "98556095-c8fd-41d8-983e-495315cd4308",
+              "parentUUID": "9f085b3f-5a43-4513-af86-fad814906a19",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should create comment after valid authorization",
+              "fullTitle": "POST / comments should create comment after valid authorization",
+              "timedOut": false,
+              "duration": 525,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// Arrange\nconst userId = 1\nconst payload = {\n        \"article_id\": 1,\n        \"user_id\": userId,\n        \"body\": faker.lorem.paragraphs( { min: 4, max: 10 }),\n        \"date\": new Date().toISOString().split('T')[0]\n}\nconst responseWithUser = await api.get(`/users/${userId}`)\nconst userEmail = responseWithUser.body.email\nconst userPass = responseWithUser.body.password\nconst userEmailAndPass = `${userEmail}:${userPass}`\nconst userEmailAndPassBasic64 = Buffer.from(userEmailAndPass, 'utf-8').toString('base64')\nconst headers = {\n    \"authorization\": `Basic ${userEmailAndPassBasic64}` \n}\nconsole.log(userEmailAndPassBasic64)\nconsole.log(headers)\n    \n// Act\n    \nconst response = await api.post(\"/comments\").set(headers).send(payload)\n    \n// Assert\nexpect(response.statusCode).to.be.equal(201, `Assert failed on ${JSON.stringify(response.body)}`)\nconst responseAfterCreation = await api.get(`/comments/${response.body.id}`)\npayload.id = response.body.id\nexpect(responseAfterCreation.body).to.be.deep.equal(payload, \n    \"Comment content does not match expected content\")",
+              "err": {},
+              "uuid": "a04d8da3-3293-4b44-9236-ba25aaa63645",
+              "parentUUID": "9f085b3f-5a43-4513-af86-fad814906a19",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "98556095-c8fd-41d8-983e-495315cd4308",
+            "a04d8da3-3293-4b44-9236-ba25aaa63645"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 954,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "4ade02b1-393f-42f5-87c8-c9520fcc0636",
+          "title": "PUT / comments",
+          "fullFile": "C:\\Users\\Zetor\\Documents\\Projects\\REST_API_DEMO_TEST\\test\\comments\\put-comments.spec.js",
+          "file": "\\test\\comments\\put-comments.spec.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Should update comment with valid date",
+              "fullTitle": "PUT / comments Should update comment with valid date",
+              "timedOut": false,
+              "duration": 498,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//Arrange\n\nconst userId = 3    \nconst commentId = 1\nconst payload = {\n        \"article_id\": 1,\n        \"user_id\": userId,\n        \"body\": faker.lorem.paragraphs(4),\n        \"date\": new Date().toISOString().split(\"T\")[0]\n      \n}\nconst responseWithUserId = await api.get(`/users/${userId}`)\nconst userEmail = responseWithUserId.body.email \nconst userPass = responseWithUserId.body.password\nconst userEmailAndPass = `${userEmail}:${userPass}`\nconst userEmailAndPassBase64 = Buffer.from(userEmailAndPass, 'utf-8').toString('base64')\n\nconst header = {\n    \"authorization\": `Basic ${userEmailAndPassBase64}`\n}\n//Act\nconst response = await api.put(`/comments/${commentId}`).set(header).send(payload)\n\n//Assert\nexpect(response.statusCode).to.be.equal(200,\n    `Assert failed on: ${JSON.stringify(response.body)}`)\nconst responseAfterCreation = await api.get(`/comments/${commentId}`)\npayload.id = commentId\nexpect(responseAfterCreation.body).to.be.deep.equal(payload,\n    \"Comment content does not match expected content\")",
+              "err": {},
+              "uuid": "ea4e4192-51a7-4673-ae30-c96bc0cb9cc8",
+              "parentUUID": "4ade02b1-393f-42f5-87c8-c9520fcc0636",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "ea4e4192-51a7-4673-ae30-c96bc0cb9cc8"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 498,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "d2f4261f-ab16-452b-818a-726bbfeb3505",
+          "title": "GET / plugins",
+          "fullFile": "C:\\Users\\Zetor\\Documents\\Projects\\REST_API_DEMO_TEST\\test\\plugins\\get-plugins.spec.js",
+          "file": "\\test\\plugins\\get-plugins.spec.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Should not get list of plugins because of invalid authorization",
+              "fullTitle": "GET / plugins Should not get list of plugins because of invalid authorization",
+              "timedOut": false,
+              "duration": 158,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//arrange\nconst headers = {\n    \"authorization\": \"1234\"\n}\n//act\nconst response = await apiV2.get(\"/plugins\").set(headers)\n//assert\nexpect(response.statusCode).to.be.equal(401, `Assert faild on: ${JSON.stringify(response.body)}`)",
+              "err": {},
+              "uuid": "3f574108-4226-4622-8809-7777499c517a",
+              "parentUUID": "d2f4261f-ab16-452b-818a-726bbfeb3505",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Should get list of plugins after authorization",
+              "fullTitle": "GET / plugins Should get list of plugins after authorization",
+              "timedOut": false,
+              "duration": 323,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//arrange\nconst payload = {\n    \"email\": \"John.Doe@test.test.ca\",\n    \"password\": \"1234\"\n  }\n  \nconst tokenResponse = await apiV2.post(\"/login\").send(payload)\nconst token = tokenResponse.body.access_token\nconst headers = {\n    \"authorization\": `Bearer ${token}`\n}\n//act\nconst response = await apiV2.get(\"/plugins\").set(headers)\n//assert\nexpect(response.statusCode).to.be.equal(200, `Assert failed on: ${JSON.stringify(response.body)}`)",
+              "err": {},
+              "uuid": "32c64bcf-12c3-4bd4-8103-9c14b2facffc",
+              "parentUUID": "d2f4261f-ab16-452b-818a-726bbfeb3505",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "3f574108-4226-4622-8809-7777499c517a",
+            "32c64bcf-12c3-4bd4-8103-9c14b2facffc"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 481,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "8a57518a-68fe-431e-8d61-d92abe20f940",
+          "title": "DELETE / users",
+          "fullFile": "C:\\Users\\Zetor\\Documents\\Projects\\REST_API_DEMO_TEST\\test\\users\\delete-users.spec.js",
+          "file": "\\test\\users\\delete-users.spec.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should delete valid and existing user",
+              "fullTitle": "DELETE / users should delete valid and existing user",
+              "timedOut": false,
+              "duration": 465,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//arrange:\nconst firstname = faker.person.firstName()\nconst lastname = faker.person.lastName()\nconst email = faker.internet.email({ firstname, lastname, provider: \"test@test.test\" })\nconst password = faker.internet.password()\nconst payload = {\n    email,\n    firstname,\n    lastname,\n    password,\n    \"avatar\": \".\\\\data\\\\users\\\\face_1591133479.7144732.jpg\"\n}\n\nconst responseAfterUserCreation = await api.post(\"/users\").send(payload)\nexpect(responseAfterUserCreation.statusCode).to.be.equal(201, \n    `Assert failed on: ${JSON.stringify(responseAfterUserCreation.body)}`)\nconst userId = responseAfterUserCreation.body.id\n//act:\nconst response = await api.delete(`/users/${userId}`)\n//assert:\nexpect(response.statusCode).to.be.equal(200, `Assert failed on: ${JSON.stringify(response.body)}`)\nconst responseAfterDelete = await api.delete(`/users/${userId}`)\nexpect(responseAfterDelete.statusCode).to.be.equal(404, `Assert failed on: ${JSON.stringify(responseAfterDelete.statusCode)}`)",
+              "err": {},
+              "uuid": "5f65fa83-5be8-4e27-a3d6-dc66d0490950",
+              "parentUUID": "8a57518a-68fe-431e-8d61-d92abe20f940",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "5f65fa83-5be8-4e27-a3d6-dc66d0490950"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 465,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "942ae827-de9e-498c-a3fb-e0ddfc5c6ccc",
+          "title": "GET/users",
+          "fullFile": "C:\\Users\\Zetor\\Documents\\Projects\\REST_API_DEMO_TEST\\test\\users\\get-users.spec.js",
+          "file": "\\test\\users\\get-users.spec.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should return status code 200 and more than four users",
+              "fullTitle": "GET/users should return status code 200 and more than four users",
+              "timedOut": false,
+              "duration": 202,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//arrange:\nconst expectedStatusCode = 200\nconst expectedNumberOfUsers = 9\n//act:\nconst response = await api.get(\"/users\")\n//assert:\nexpect(response.statusCode).to.be.equal(expectedStatusCode, `For GET users we expected status code: ${expectedStatusCode}`)\nexpect(response.body.length).to.be.equal(expectedNumberOfUsers)",
+              "err": {},
+              "uuid": "ac39188b-7483-4dd3-a646-cea72b9d3d0d",
+              "parentUUID": "942ae827-de9e-498c-a3fb-e0ddfc5c6ccc",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should return user with given ID",
+              "fullTitle": "GET/users should return user with given ID",
+              "timedOut": false,
+              "duration": 178,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//arrange:\nconst expectedStatusCode = 200\nconst expectedUserID = 1\n//act:\nconst response = await api.get(`/users/${expectedUserID}`)\n//assert:\nexpect(response.statusCode).to.be.equal(expectedStatusCode, `For GET /userID we expect status code: ${expectedStatusCode}`)\nexpect(response.body.id).to.be.equal\n(expectedUserID, `expect id number ${expectedUserID} we received: ${JSON.stringify(response.body)}`)",
+              "err": {},
+              "uuid": "70a5396b-8c0d-425f-80e6-500018ec15af",
+              "parentUUID": "942ae827-de9e-498c-a3fb-e0ddfc5c6ccc",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should return list of users with given ID using parameters in URL",
+              "fullTitle": "GET/users should return list of users with given ID using parameters in URL",
+              "timedOut": false,
+              "duration": 173,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//arrange:\nconst expectedStatusCode = 200\nconst expectedUserID = 1\n//act:\nconst response = await api.get(`/users?id=${expectedUserID}`)\n//assert:\nexpect(response.statusCode).to.be.equal(expectedStatusCode, `expect status code ${expectedStatusCode}`)\nexpect(response.body.length).to.be.equal(1, `For parameter ?id=${expectedUserID}, we received: ${JSON.stringify(response.body)}`)\nexpect(response.body[0].id).to.be.equal(expectedUserID, `expect user ?id=: ${expectedUserID} we receive: ${JSON.stringify(response.body)}`)",
+              "err": {},
+              "uuid": "cbe040d2-56a0-4cec-bc9e-539c93f6cdee",
+              "parentUUID": "942ae827-de9e-498c-a3fb-e0ddfc5c6ccc",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "ac39188b-7483-4dd3-a646-cea72b9d3d0d",
+            "70a5396b-8c0d-425f-80e6-500018ec15af",
+            "cbe040d2-56a0-4cec-bc9e-539c93f6cdee"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 553,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "c8ae3559-28d4-4b48-a74b-ebf7771b63a8",
+          "title": "PATCH/users",
+          "fullFile": "C:\\Users\\Zetor\\Documents\\Projects\\REST_API_DEMO_TEST\\test\\users\\patch-users.spec.js",
+          "file": "\\test\\users\\patch-users.spec.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should update valid user witch valid email",
+              "fullTitle": "PATCH/users should update valid user witch valid email",
+              "timedOut": false,
+              "duration": 512,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//arrange:\nconst email = faker.internet.email()\nconst payload = {\n    email\n}\nconst userId = 3\n//act:\nconst response = await api.patch(`/users/${userId}`).send(payload)\nconst responseWithBaseUser = await api.get(`/users/${userId}`) \nconst expectedData = responseWithBaseUser.body\nexpectedData.email = email\n//assert:\nexpect(response.statusCode).to.be.equal(200, `Assert failed on: ${JSON.stringify(response.body)}`)\nconst takeUserBody = await api.get(`/users/${userId}`)\nexpect(takeUserBody.body).to.be.deep.equal(expectedData, \n    `Assertion faild with during comparing expected ${JSON.stringify(expectedData)} with current ${takeUserBody.body}`)",
+              "err": {},
+              "uuid": "76b2ad02-640e-4b83-ba25-6301721359bc",
+              "parentUUID": "c8ae3559-28d4-4b48-a74b-ebf7771b63a8",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "76b2ad02-640e-4b83-ba25-6301721359bc"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 512,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "eaf61c0b-07bb-45c8-8fae-08fb5b31a6fa",
+          "title": "POST/users",
+          "fullFile": "C:\\Users\\Zetor\\Documents\\Projects\\REST_API_DEMO_TEST\\test\\users\\post-users.spec.js",
+          "file": "\\test\\users\\post-users.spec.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should create valid and unique user",
+              "fullTitle": "POST/users should create valid and unique user",
+              "timedOut": false,
+              "duration": 318,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//arrange:\nconst firstname = faker.person.firstName()\nconst lastname = faker.person.lastName()\nconst email = faker.internet.email({ firstname, lastname, provider: \"test.test.pl\" })\nconst password = faker.internet.password()\nconst payload = {\n        email,\n        firstname,\n        lastname,\n        password,\n        \"avatar\": \".\\\\data\\\\users\\\\face_1591133479.7144732.jpg\"\n}\n//act:\nconst response = await api.post(\"/users\").send(payload)\n//assert:\nexpect(response.statusCode).to.be.equal(201, `Assert failed on: ${JSON.stringify(response.body)}`)\nconst responseWithUser = await api.get(`/users/${response.body.id}`)\npayload.id = response.body.id\nexpect(responseWithUser.body).to.be.deep.equal(payload, `Assertion failed during comparing expected ${payload} with actual ${response.body}`)\nexpect(responseWithUser.body).to.be.eql(payload, `Assertion failed during comparing expected ${payload} with actual ${response.body}`)",
+              "err": {},
+              "uuid": "80f0df49-107d-421c-bd31-637401a19c38",
+              "parentUUID": "eaf61c0b-07bb-45c8-8fae-08fb5b31a6fa",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [
+            {
+              "uuid": "6263cb1d-281c-4760-95a0-6dad31d09164",
+              "title": "invalid empty fields",
+              "fullFile": "C:\\Users\\Zetor\\Documents\\Projects\\REST_API_DEMO_TEST\\test\\users\\post-users.spec.js",
+              "file": "\\test\\users\\post-users.spec.js",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "should not create user with empty: email",
+                  "fullTitle": "POST/users invalid empty fields should not create user with empty: email",
+                  "timedOut": false,
+                  "duration": 547,
+                  "state": "passed",
+                  "speed": "slow",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "// arange:\nconst firstName = faker.person.firstName()\nconst lastName = faker.person.lastName()\nconst email = faker.internet.email({ firstName, lastName, provider: \"test@test.pl\" })\nconst password = faker.internet.password()\nconst payload = {\n    email,\n    firstName,\n    lastName,\n    password,\n    'avatar': \".\\\\data\\\\users\\\\face_1591133479.7144732.jpg\"\n}\n        \nconst getAllNumberOfUsers = await api.get(\"/users\")\npayload[field] = \"\"\n        \n// act:\nconst response = await api.post(\"/users\"). send(payload)\n        \n// assert:\nexpect(response.statusCode).to.be.equal(422, `Assert failed on ${JSON.stringify(response.body)}`)\nconst getUsersAfter = await api.get(\"/users\")\nexpect(getUsersAfter.body.lenght).to.be.equal(getAllNumberOfUsers.body.lenght, \n    \"Number of users before test does not match number of users after test\")",
+                  "err": {},
+                  "uuid": "9807387b-ae77-4ade-a31b-f243bf2937f3",
+                  "parentUUID": "6263cb1d-281c-4760-95a0-6dad31d09164",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "should not create user with empty: firstName",
+                  "fullTitle": "POST/users invalid empty fields should not create user with empty: firstName",
+                  "timedOut": false,
+                  "duration": 531,
+                  "state": "passed",
+                  "speed": "slow",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "// arange:\nconst firstName = faker.person.firstName()\nconst lastName = faker.person.lastName()\nconst email = faker.internet.email({ firstName, lastName, provider: \"test@test.pl\" })\nconst password = faker.internet.password()\nconst payload = {\n    email,\n    firstName,\n    lastName,\n    password,\n    'avatar': \".\\\\data\\\\users\\\\face_1591133479.7144732.jpg\"\n}\n        \nconst getAllNumberOfUsers = await api.get(\"/users\")\npayload[field] = \"\"\n        \n// act:\nconst response = await api.post(\"/users\"). send(payload)\n        \n// assert:\nexpect(response.statusCode).to.be.equal(422, `Assert failed on ${JSON.stringify(response.body)}`)\nconst getUsersAfter = await api.get(\"/users\")\nexpect(getUsersAfter.body.lenght).to.be.equal(getAllNumberOfUsers.body.lenght, \n    \"Number of users before test does not match number of users after test\")",
+                  "err": {},
+                  "uuid": "e0be6012-59b6-4d78-979c-2c6f89162694",
+                  "parentUUID": "6263cb1d-281c-4760-95a0-6dad31d09164",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [
+                "9807387b-ae77-4ade-a31b-f243bf2937f3",
+                "e0be6012-59b6-4d78-979c-2c6f89162694"
+              ],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 1078,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            }
+          ],
+          "passes": [
+            "80f0df49-107d-421c-bd31-637401a19c38"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 318,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "ff67ffa5-b64a-43e0-88b9-9e4f2920f89e",
+          "title": "PUT/users",
+          "fullFile": "C:\\Users\\Zetor\\Documents\\Projects\\REST_API_DEMO_TEST\\test\\users\\put-users.spec.js",
+          "file": "\\test\\users\\put-users.spec.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should update valid user",
+              "fullTitle": "PUT/users should update valid user",
+              "timedOut": false,
+              "duration": 316,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//arrange:\nconst firstname = faker.person.firstName()\nconst lastname = faker.person.lastName()\nconst email = faker.internet.email({ firstname, lastname, provider: \"test.test.pl\" })\nconst password = faker.internet.password()\nconst payload = {\n        email,\n        firstname,\n        lastname,\n        password,\n        \"avatar\": faker.lorem.sentence()\n}\nconst userId = 2\n//act:\nconst response = await api.put(`/users/${userId}`).send(payload)\n \n//assert\nexpect(response.statusCode).to.be.equal(200, `Assert failed on: ${JSON.stringify(response.body)}`)\nconst responseWithUser = await api.get(`/users/${userId}`)\npayload.id = userId\nexpect(responseWithUser.body).to.be.deep.equal(payload, `Assertion failed during comparing expected ${JSON.stringify(response.body)}`)",
+              "err": {},
+              "uuid": "b91000a0-7ee5-4ca9-9629-2f4b79f6a77a",
+              "parentUUID": "ff67ffa5-b64a-43e0-88b9-9e4f2920f89e",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "b91000a0-7ee5-4ca9-9629-2f4b79f6a77a"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 316,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "10.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "overwrite": "true",
+        "reportTitle": "My Custom Title",
+        "showPassed": "false"
+      },
+      "version": "6.2.0"
+    }
+  }
+}

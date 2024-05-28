@@ -6,17 +6,17 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "sample": "mocha './test/sample/**/*.spec.js'",
-    "testMulti": "mocha './test/sample/new-sample-tests.spec.js'",
-    "test-users": "mocha './test/users/**/*.spec.js' --require test/hooks.js",
-    "test-articles": "mocha './test/articles/**/*.spec.js' --require test/hooks.js",
-    "test-comments": "mocha './test/comments/**/*.spec.js'",
+    "testAll": "mocha './test/**/*.spec.js' --require test/hooks.js",
+    "testUsers": "mocha './test/users/**/*.spec.js' --require test/hooks.js",
+    "testArticles": "mocha './test/articles/**/*.spec.js' --require test/hooks.js",
+    "testComments": "mocha './test/comments/**/*.spec.js'",
     "testPlugins": "mocha './test/plugins/**/*.spec.js'"
   },
   "author": "emamaj",
   "license": "ISC",
   "dependencies": {
     "mocha": "*",
+    "mochawesome": "^7.1.3",
     "supertest": "^6.3.3"
   },
   "devDependencies": {

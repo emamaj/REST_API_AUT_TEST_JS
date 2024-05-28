@@ -1,7 +1,4 @@
-import { expect } from 'chai'
-import request from 'supertest'
-
-const api = request('https://rest-api-demo-yxag.onrender.com/api')
+import { faker, expect, request, api } from '../../config.js';
 
 describe("GET/articles", function() {
     it("should return status code 200 and more than 4 articles", async function() {

@@ -1,8 +1,4 @@
-import { expect } from 'chai'
-import request from 'supertest'
-import { faker } from '@faker-js/faker'
-
-const api = request('https://rest-api-demo-yxag.onrender.com/api')
+import { faker, expect, request, api } from '../../config.js';
 
 describe("POST/users", function(){
 //     beforeEach(function() {

@@ -1,5 +1,6 @@
-import { expect } from 'chai'
-import request from 'supertest'
+
+import { request, apiV2, expect } from '../../config.js'
+
 
 const api = request('https://rest-api-demo-yxag.onrender.com/api/v2')
 
@@ -11,7 +12,7 @@ describe("GET / plugins", function() {
         }
 
         //act
-        const response = await api.get("/plugins").set(headers)
+        const response = await apiV2.get("/plugins").set(headers)
 
         //assert
         expect(response.statusCode).to.be.equal(401, `Assert faild on: ${JSON.stringify(response.body)}`)
@@ -24,7 +25,7 @@ describe("GET / plugins", function() {
             "password": "1234"
           }
           
-        const tokenResponse = await api.post("/login").send(payload)
+        const tokenResponse = await apiV2.post("/login").send(payload)
         const token = tokenResponse.body.access_token
 
         const headers = {
@@ -32,7 +33,7 @@ describe("GET / plugins", function() {
         }
 
         //act
-        const response = await api.get("/plugins").set(headers)
+        const response = await apiV2.get("/plugins").set(headers)
 
         //assert
         expect(response.statusCode).to.be.equal(200, `Assert failed on: ${JSON.stringify(response.body)}`)

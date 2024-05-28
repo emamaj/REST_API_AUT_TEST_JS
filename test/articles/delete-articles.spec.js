@@ -1,8 +1,4 @@
-import { faker } from "@faker-js/faker"
-import { expect } from "chai"
-import request from "supertest"
-
-const api = request('https://rest-api-demo-yxag.onrender.com/api')
+import { faker, expect, request, api } from '../../config.js';
 
 describe("DELETE / articles", function() {
     it("should delete valid and existing articles", async function() {

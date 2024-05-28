@@ -1,8 +1,4 @@
-import { faker } from "@faker-js/faker"
-import { expect } from "chai"
-import request from 'supertest'
-
-const api = request('https://rest-api-demo-yxag.onrender.com/api')
+import { faker, expect, request, api } from '../../config.js';
 
 describe("PUT/users", function(){
     it("should update valid user", async function() {
