@@ -30,7 +30,7 @@ jobs:
     - run: npm run testAll
     - name: Archive tests results
       if: success() || failure()
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: test-report
         path: mochawesome-report
