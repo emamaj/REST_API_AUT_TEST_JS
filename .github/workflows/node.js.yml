@@ -28,4 +28,9 @@ jobs:
         cache: 'npm'
     - run: npm i
     - run: npm run testAll
-
+    - name: Archive tests results
+      if: success() || failure()
+      uses: actions/upload-artifacts@v3
+      with:
+        name: test-report
+        path: mochawesome-report
